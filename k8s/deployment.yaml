@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-challenge-deployment
+  labels:
+    app: devops-challenge
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: devops-challenge
+  template:
+    metadata:
+      labels:
+        app: devops-challenge
+    spec:
+      containers:
+      - name: devops-challenge
+        image: bermudez/plan-a-devops-challenge-app:1.0.0
+        ports:
+        - containerPort: 5000
+        env:
+        - name: DEBUG
+          value: 'True'
+        - name: PORT
+          value: '5000'
